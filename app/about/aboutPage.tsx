@@ -9,64 +9,81 @@ import TeamMemberCard from "@/components/TeamMemberCard";
 import { CtaSection } from "@/components/CtaSection";
 import { useEffect, useState } from "react";
 
-const [teamMember, setTeamMember] = useState([]);
-
-useEffect(()=>{
-  const fetchTeamMembers = async () => {
-    try {
-      const response = await axios.get('/api/teamMembers');
-      setTeamMember(response.data);
-    } catch (error) {
-      console.error("Error fetching team members:", error);
-    }
-  }
-  fetchTeamMembers();
-})
-
 export default function AboutPage() {
+  type TeamMember = {
+    id: "";
+    position: "";
+    bio: "";
+    linkedIn: "";
+    userId: "";
+    user: {
+      id: "";
+      email: "";
+      name: "";
+      role: "";
+      avatar: [
+        {
+          id: "";
+          userId: "";
+          image: "";
+          createdAt: "";
+          updatedAt: "";
+        }
+      ];
+    };
+  };
+  const [teamMember, setTeamMember] = useState<TeamMember[]>([]);
+
+  useEffect(() => {
+    const fetchTeamMembers = async () => {
+      try {
+        const response = await axios.get("/api/team");
+        setTeamMember(response.data.data);
+      } catch (error) {
+        console.error("Error fetching team members:", error);
+      }
+    };
+    fetchTeamMembers();
+  }, []);
+
   const data = [
     {
-      name : "David Mitchell",
-      position : "Founder & CEO",
-      image : "",
-      bio : "25+ years of experience in investment banking and financial consulting. MBA from Wharton.",
+      name: "David Mitchell",
+      position: "Founder & CEO",
+      image: "",
+      bio: "25+ years of experience in investment banking and financial consulting. MBA from Wharton.",
     },
     {
-      name : "Jennifer Williams",
-      position : "Chief Financial Advisor",
-      image : "",
-      bio : "Certified Financial Planner with expertise in retirement planning and wealth management.",
+      name: "Jennifer Williams",
+      position: "Chief Financial Advisor",
+      image: "",
+      bio: "Certified Financial Planner with expertise in retirement planning and wealth management.",
     },
     {
-      name : "Michael Rodriguez",
-      position : "Tax Specialist",
-      image : "",
-      bio : "Former IRS advisor with deep knowledge of tax law and corporate tax strategy optimization.",
+      name: "Michael Rodriguez",
+      position: "Tax Specialist",
+      image: "",
+      bio: "Former IRS advisor with deep knowledge of tax law and corporate tax strategy optimization.",
     },
     {
-      name : "Amanda Chen",
-      position : "Investment Strategist",
-      image : "",
-      bio : "15 years of experience in portfolio management and market analysis. CFA charterholder.",
+      name: "Amanda Chen",
+      position: "Investment Strategist",
+      image: "",
+      bio: "15 years of experience in portfolio management and market analysis. CFA charterholder.",
     },
     {
-      name : "Robert Johnson",
-      position : "Risk Management Specialist",
-      image : "",
-      bio : "Expert in identifying and mitigating financial risks for both individuals and corporations.",
+      name: "Robert Johnson",
+      position: "Risk Management Specialist",
+      image: "",
+      bio: "Expert in identifying and mitigating financial risks for both individuals and corporations.",
     },
     {
-      name : "Sophia Patel",
-      position : "Client Relations Director",
-      image : "",
-      bio : "Dedicated to ensuring exceptional client experiences and tailored financial solutions.",
+      name: "Sophia Patel",
+      position: "Client Relations Director",
+      image: "",
+      bio: "Dedicated to ensuring exceptional client experiences and tailored financial solutions.",
     },
   ];
-  const [teamMember, setTeamMember] = useState(data);
-
-  useEffect(()=>{
-    
-  })
 
   return (
     <main className="flex flex-col min-h-screen">
@@ -341,7 +358,16 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            <TeamMemberCard
+            {teamMember.map((member) => (
+              <TeamMemberCard
+                key={member.id}
+                name={member.user.name}
+                position={member.position}
+                image={member.user.avatar[0]?.image || ""}
+                bio={member.bio}
+              />
+            ))}
+            {/* <TeamMemberCard
               name="David Mitchell"
               position="Founder & CEO"
               image="https://images.pexels.com/photos/5648101/pexels-photo-5648101.jpeg"
@@ -376,7 +402,7 @@ export default function AboutPage() {
               position="Client Relations Director"
               image="https://images.pexels.com/photos/6626903/pexels-photo-6626903.jpeg"
               bio="Dedicated to ensuring exceptional client experiences and tailored financial solutions."
-            />
+            /> */}
           </div>
         </div>
       </section>

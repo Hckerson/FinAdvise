@@ -82,7 +82,7 @@ export default function ContactPage() {
                 <CardHeader>
                   <CardTitle className="text-2xl">Send Us a Message</CardTitle>
                   <CardDescription>
-                    Fill out the form below and we'll get back to you as soon as possible.
+                    Fill out the form below and we'll get back to you as soon as possible
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
