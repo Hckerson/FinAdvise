@@ -82,7 +82,7 @@ export default function ContactPage() {
                 <CardHeader>
                   <CardTitle className="text-2xl">Send Us a Message</CardTitle>
                   <CardDescription>
-                    Fill out the form below and we'll get back to you as soon as possible
+                    {"Fill out the form below and we'll get back to you as soon as possible"}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -239,7 +239,7 @@ export default function ContactPage() {
                     <div>
                       <h3 className="font-semibold">Email</h3>
                       <p className="text-muted-foreground">info@finadvise.com</p>
-                      <p className="text-sm text-muted-foreground">We'll respond within 24 hours</p>
+                      <p className="text-sm text-muted-foreground">{"We'll respond within 24 hours"}</p>
                     </div>
                   </div>
                   <div className="flex items-start">

@@ -49,7 +49,7 @@ export default function TestimonialsPage() {
               </CardHeader>
               <CardContent>
                 <p className="italic">
-                  "Working with the team at FinAdvise was a game-changer for my retirement planning. Their personalized approach and deep expertise helped me create a financial plan that I'm confident will support me through retirement."
+                  "Working with the team at FinAdvise was a game-changer for my retirement planning. Their personalized approach and deep expertise helped me create a financial plan that {"I'm"} confident will support me through retirement."
                 </p>
               </CardContent>
               <CardFooter>
