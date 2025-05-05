@@ -23,7 +23,7 @@ const userData: Prisma.UserCreateInput[] = [
     avatar: {
       create: [
         {
-          image: "David Mitchell",
+          image: "https://res.cloudinary.com/mailranch/image/upload/David%20Mitchell?_a=BAMABkUq0",
         },
       ],
     },
@@ -42,7 +42,7 @@ const userData: Prisma.UserCreateInput[] = [
     avatar: {
       create: [
         {
-          image: "Jennifer Williams",
+          image: "https://res.cloudinary.com/mailranch/image/upload/Jennifer%20Williams?_a=BAMABkUq0",
         },
       ],
     },
@@ -61,7 +61,7 @@ const userData: Prisma.UserCreateInput[] = [
     avatar: {
       create: [
         {
-          image: "Michael Rodriguez",
+          image: "https://res.cloudinary.com/mailranch/image/upload/Michael%20Rodriguez?_a=BAMABkUq0",
         },
       ],
     },
@@ -80,7 +80,7 @@ const userData: Prisma.UserCreateInput[] = [
     avatar: {
       create: [
         {
-          image: "Amanda Chen",
+          image: "https://res.cloudinary.com/mailranch/image/upload/Amanda%20Chen?_a=BAMABkUq0",
         },
       ],
     },
@@ -99,7 +99,7 @@ const userData: Prisma.UserCreateInput[] = [
     avatar: {
       create: [
         {
-          image: "Robert Johnson",
+          image: "https://res.cloudinary.com/mailranch/image/upload/Robert%20Johnson?_a=BAMABkUq0",
         },
       ],
     },
@@ -118,7 +118,7 @@ const userData: Prisma.UserCreateInput[] = [
     avatar: {
       create: [
         {
-          image: "Sophia Patel",
+          image: "https://res.cloudinary.com/mailranch/image/upload/Sophia%20Patel?_a=BAMABkUq0",
         },
       ],
     },

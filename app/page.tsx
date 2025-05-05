@@ -138,7 +138,7 @@ export default function Home() {
               What Our Clients Say
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Don't just take our word for it. Hear from some of our satisfied clients.
+              {`Don't just take our word for it. Hear from some of our satisfied clients.`}
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

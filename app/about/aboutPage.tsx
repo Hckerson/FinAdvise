@@ -1,89 +1,50 @@
 "use client";
 import { ArrowRight, Award, Clock, History, Users } from "lucide-react";
 import Image from "next/image";
-import axios from "axios";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import TeamMemberCard from "@/components/TeamMemberCard";
 import { CtaSection } from "@/components/CtaSection";
-import { useEffect, useState } from "react";
 
-export default function AboutPage() {
-  type TeamMember = {
-    id: "";
-    position: "";
-    bio: "";
-    linkedIn: "";
-    userId: "";
-    user: {
-      id: "";
-      email: "";
-      name: "";
-      role: "";
-      avatar: [
-        {
-          id: "";
-          userId: "";
-          image: "";
-          createdAt: "";
-          updatedAt: "";
-        }
-      ];
-    };
-  };
-  const [teamMember, setTeamMember] = useState<TeamMember[]>([]);
-
-  useEffect(() => {
-    const fetchTeamMembers = async () => {
-      try {
-        const response = await axios.get("/api/team");
-        setTeamMember(response.data.data);
-      } catch (error) {
-        console.error("Error fetching team members:", error);
+type TeamMember = {
+  id: string;
+  position: string;
+  bio: string;
+  linkedIn: string;
+  userId: string;
+  user: {
+    id: string;
+    email: string;
+    name: string;
+    role: string;
+    avatar: [
+      {
+        id: string;
+        userId: string;
+        image: string;
+        createdAt: string;
+        updatedAt: string;
       }
-    };
-    fetchTeamMembers();
-  }, []);
+    ];
+  };
+};
 
-  const data = [
-    {
-      name: "David Mitchell",
-      position: "Founder & CEO",
-      image: "",
-      bio: "25+ years of experience in investment banking and financial consulting. MBA from Wharton.",
-    },
-    {
-      name: "Jennifer Williams",
-      position: "Chief Financial Advisor",
-      image: "",
-      bio: "Certified Financial Planner with expertise in retirement planning and wealth management.",
-    },
-    {
-      name: "Michael Rodriguez",
-      position: "Tax Specialist",
-      image: "",
-      bio: "Former IRS advisor with deep knowledge of tax law and corporate tax strategy optimization.",
-    },
-    {
-      name: "Amanda Chen",
-      position: "Investment Strategist",
-      image: "",
-      bio: "15 years of experience in portfolio management and market analysis. CFA charterholder.",
-    },
-    {
-      name: "Robert Johnson",
-      position: "Risk Management Specialist",
-      image: "",
-      bio: "Expert in identifying and mitigating financial risks for both individuals and corporations.",
-    },
-    {
-      name: "Sophia Patel",
-      position: "Client Relations Director",
-      image: "",
-      bio: "Dedicated to ensuring exceptional client experiences and tailored financial solutions.",
-    },
-  ];
+export default function AboutPage({teamData}: {teamData: TeamMember[]}) {
+
+  // const [teamMember, setTeamMember] = useState<TeamMember[]>([]);
+
+  // useEffect(() => {
+  //   const fetchTeamMembers = async () => {
+  //     try {
+  //       const response = await axios.get("/api/team");
+  //       setTeamMember(response.data.data);
+  //     } catch (error) {
+  //       console.error("Error fetching team members:", error);
+  //     }
+  //   };
+  //   fetchTeamMembers();
+  // }, []);
 
   return (
     <main className="flex flex-col min-h-screen">
@@ -358,7 +319,7 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {teamMember.map((member) => (
+            {/* {teamData.map((member) => (
               <TeamMemberCard
                 key={member.id}
                 name={member.user.name}
@@ -366,8 +327,8 @@ export default function AboutPage() {
                 image={member.user.avatar[0]?.image || ""}
                 bio={member.bio}
               />
-            ))}
-            {/* <TeamMemberCard
+            ))} */}
+            <TeamMemberCard
               name="David Mitchell"
               position="Founder & CEO"
               image="https://images.pexels.com/photos/5648101/pexels-photo-5648101.jpeg"
@@ -402,7 +363,7 @@ export default function AboutPage() {
               position="Client Relations Director"
               image="https://images.pexels.com/photos/6626903/pexels-photo-6626903.jpeg"
               bio="Dedicated to ensuring exceptional client experiences and tailored financial solutions."
-            /> */}
+            />
           </div>
         </div>
       </section>

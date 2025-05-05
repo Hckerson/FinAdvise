@@ -355,7 +355,7 @@ export function FinancialCalculator() {
                   <path d="M13 12a3 3 0 1 0 0-6H9v14" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-2">We're enhancing our mortgage calculator</h3>
+              <h3 className="text-xl font-semibold mb-2">{"We're enhancing our mortgage calculator"}</h3>
               <p className="text-muted-foreground mb-6">
                 Our team is currently developing a comprehensive mortgage calculator with advanced features to help you make informed home-buying decisions.
               </p>

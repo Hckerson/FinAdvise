@@ -247,9 +247,9 @@ export default function FaqPage() {
                     </AccordionTrigger>
                     <AccordionContent className="px-4 pb-4">
                       <p>
-                        Yes, you can cancel subscription-based services at any
+                        {`Yes, you can cancel subscription-based services at any
                         time with 30 days' notice. For annual pre-paid services,
-                        we offer a prorated refund for the unused portion.
+                        we offer a prorated refund for the unused portion.`}
                       </p>
                       <p className="mt-2">
                         For investment management services, you maintain full
@@ -541,8 +541,8 @@ export default function FaqPage() {
                     </AccordionTrigger>
                     <AccordionContent className="px-4 pb-4">
                       <p>
-                        Our investment recommendations are tailored to each
-                        client's goals, but typically include a mix of:
+                        {`Our investment recommendations are tailored to each
+                        client's goals, but typically include a mix of:`}
                       </p>
                       <ul className="list-disc pl-5 mt-2 space-y-1">
                         <li>
@@ -617,12 +617,12 @@ export default function FaqPage() {
                         </li>
                       </ul>
                       <p className="mt-2">
-                        Our historical data shows that maintaining discipline
+                        {`Our historical data shows that maintaining discipline
                         during volatile markets has been a key factor in
                         long-term investment success. We've helped clients
                         navigate multiple market cycles, including the 2008
                         financial crisis, the 2020 pandemic decline, and other
-                        significant market events.
+                        significant market events.`}
                       </p>
                     </AccordionContent>
                   </AccordionItem>
@@ -739,9 +739,10 @@ export default function FaqPage() {
                       </p>
                       <ul className="list-disc pl-5 mt-2 space-y-1">
                         <li>
-                          <strong>Small Business Owners:</strong> Who need
+                          <strong>Small Business Owners:</strong>{" "}
+                          {`Who need
                           comprehensive financial services but don't require a
-                          full-time financial staff.
+                          full-time financial staff.`}
                         </li>
                         <li>
                           <strong>Professional Practices:</strong> Such as
@@ -889,12 +890,12 @@ export default function FaqPage() {
         <div className="container px-4 md:px-6">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-              Didn't Find Your Answer?
+              {`Didn't Find Your Answer?`}
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-              If you couldn't find the information you were looking for, our
-              team is ready to help. Contact us directly for personalized
-              assistance.
+{`            If you couldn't find the information you were looking for, our
+            team is ready to help. Contact us directly for personalized
+            assistance.`}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild>

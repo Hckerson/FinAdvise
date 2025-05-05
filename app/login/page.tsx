@@ -6,7 +6,7 @@ export default function Login() {
   return (
     <>
       <Suspense fallback={<ScaleLoader/>}>
-        <LoginPage />
+        {/* <LoginPage /> */}
       </Suspense>
     </>
   );

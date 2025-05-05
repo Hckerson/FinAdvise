@@ -2,14 +2,22 @@ import { ArrowRight, Quote } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TestimonialCard from "@/components/TestimonialCard";
 import { CtaSection } from "@/components/CtaSection";
 
 export const metadata = {
   title: "Client Testimonials | FinAdvise Financial Services",
-  description: "Hear what our clients have to say about our financial services and expert guidance.",
+  description:
+    "Hear what our clients have to say about our financial services and expert guidance.",
 };
 
 export default function TestimonialsPage() {
@@ -23,7 +31,8 @@ export default function TestimonialsPage() {
               Client Testimonials
             </h1>
             <p className="text-xl text-muted-foreground max-w-[700px] mx-auto">
-              Read about the experiences of our clients and how our financial services have helped them achieve their goals.
+              Read about the experiences of our clients and how our financial
+              services have helped them achieve their goals.
             </p>
           </div>
         </div>
@@ -37,7 +46,9 @@ export default function TestimonialsPage() {
               What Our Clients Say
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Don't just take our word for it. Hear from some of our satisfied clients.
+              {
+                "Don't just take our word for it. Hear from some of our satisfied clients."
+              }
             </p>
           </div>
 
@@ -49,7 +60,9 @@ export default function TestimonialsPage() {
               </CardHeader>
               <CardContent>
                 <p className="italic">
-                  "Working with the team at FinAdvise was a game-changer for my retirement planning. Their personalized approach and deep expertise helped me create a financial plan that {"I'm"} confident will support me through retirement."
+                  {
+                    "Working with the team at FinAdvise was a game-changer for my retirement planning. Their personalized approach and deep expertise helped me create a financial plan that I&apos;m confident will support me through retirement."
+                  }
                 </p>
               </CardContent>
               <CardFooter>
@@ -77,7 +90,9 @@ export default function TestimonialsPage() {
               </CardHeader>
               <CardContent>
                 <p className="italic">
-                  "The strategic tax planning advice we received saved our business thousands of dollars and helped us reinvest in growth. The team's proactive approach and clear communication make them essential partners."
+                  {
+                    "The strategic tax planning advice we received saved our business thousands of dollars and helped us reinvest in growth. The team's proactive approach and clear communication make them essential partners."
+                  }
                 </p>
               </CardContent>
               <CardFooter>
@@ -92,7 +107,9 @@ export default function TestimonialsPage() {
                   </div>
                   <div>
                     <h4 className="font-semibold">Sarah Johnson</h4>
-                    <p className="text-sm text-muted-foreground">CEO, Johnson Enterprises</p>
+                    <p className="text-sm text-muted-foreground">
+                      CEO, Johnson Enterprises
+                    </p>
                   </div>
                 </div>
               </CardFooter>
@@ -105,7 +122,9 @@ export default function TestimonialsPage() {
               </CardHeader>
               <CardContent>
                 <p className="italic">
-                  "I've been working with FinAdvise for over 5 years, and their investment advice has consistently outperformed the market. Their team truly understands my financial goals and risk tolerance."
+                  {
+                    "I've been working with FinAdvise for over 5 years, and their investment advice has consistently outperformed the market. Their team truly understands my financial goals and risk tolerance."
+                  }
                 </p>
               </CardContent>
               <CardFooter>
@@ -120,7 +139,9 @@ export default function TestimonialsPage() {
                   </div>
                   <div>
                     <h4 className="font-semibold">Emma Thompson</h4>
-                    <p className="text-sm text-muted-foreground">Small Business Owner</p>
+                    <p className="text-sm text-muted-foreground">
+                      Small Business Owner
+                    </p>
                   </div>
                 </div>
               </CardFooter>
@@ -231,40 +252,82 @@ export default function TestimonialsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="rounded-lg overflow-hidden border bg-card text-card-foreground shadow-sm">
               <div className="relative aspect-video bg-muted flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary opacity-70">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-primary opacity-70"
+                >
                   <polygon points="5 3 19 12 5 21 5 3"></polygon>
                 </svg>
               </div>
               <div className="p-4">
-                <h3 className="text-lg font-semibold mb-1">Business Growth Story</h3>
+                <h3 className="text-lg font-semibold mb-1">
+                  Business Growth Story
+                </h3>
                 <p className="text-sm text-muted-foreground">
-                  Jonathan shares how our business accounting services helped his company grow by 40% in one year.
+                  Jonathan shares how our business accounting services helped
+                  his company grow by 40% in one year.
                 </p>
               </div>
             </div>
             <div className="rounded-lg overflow-hidden border bg-card text-card-foreground shadow-sm">
               <div className="relative aspect-video bg-muted flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary opacity-70">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-primary opacity-70"
+                >
                   <polygon points="5 3 19 12 5 21 5 3"></polygon>
                 </svg>
               </div>
               <div className="p-4">
-                <h3 className="text-lg font-semibold mb-1">Early Retirement Success</h3>
+                <h3 className="text-lg font-semibold mb-1">
+                  Early Retirement Success
+                </h3>
                 <p className="text-sm text-muted-foreground">
-                  Katherine explains how our retirement planning services helped her retire 5 years earlier than expected.
+                  Katherine explains how our retirement planning services helped
+                  her retire 5 years earlier than expected.
                 </p>
               </div>
             </div>
             <div className="rounded-lg overflow-hidden border bg-card text-card-foreground shadow-sm">
               <div className="relative aspect-video bg-muted flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary opacity-70">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-primary opacity-70"
+                >
                   <polygon points="5 3 19 12 5 21 5 3"></polygon>
                 </svg>
               </div>
               <div className="p-4">
-                <h3 className="text-lg font-semibold mb-1">Investment Portfolio Growth</h3>
+                <h3 className="text-lg font-semibold mb-1">
+                  Investment Portfolio Growth
+                </h3>
                 <p className="text-sm text-muted-foreground">
-                  Mark discusses how our investment strategies helped him achieve 12% annual returns even during market downturns.
+                  Mark discusses how our investment strategies helped him
+                  achieve 12% annual returns even during market downturns.
                 </p>
               </div>
             </div>
@@ -317,7 +380,7 @@ export default function TestimonialsPage() {
       </section>
 
       {/* CTA Section */}
-      <CtaSection 
+      <CtaSection
         title="Ready to Join Our Satisfied Clients?"
         description="Schedule a consultation today and discover how our financial expertise can help you achieve your goals."
         buttonText="Contact Us Now"

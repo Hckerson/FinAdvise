@@ -25,16 +25,14 @@ export async function uploadImage(imagePath: string, name: string) {
   }
 }
 
-export async function getasssetUrl(publicId: string) {
+export async function getassetUrl(publicId: string) {
   if (!publicId) {
     throw new Error("Public ID is required");
   }
 
   try {
     // Generate a URL with transformations applied
-    const url = cloudinary.url(publicId, {
-      transformation: [{ quality: "auto" }, { fetch_format: "auto" }],
-    });
+    const url = cloudinary.url(publicId);
     console.log(url);
     return url;
   } catch (error) {
