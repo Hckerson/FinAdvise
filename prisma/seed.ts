@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 const userData: Prisma.UserCreateInput[] = [
   {
-    name: "Hckerson",
+    username: "Hckerson",
     email: "Hckerson@gmail.com",
     role: "ADMIN",
     avatar: {
@@ -17,13 +17,14 @@ const userData: Prisma.UserCreateInput[] = [
     },
   },
   {
-    name: "David Mitchell",
+    username: "David Mitchell",
     email: "david.mitchell@example.com",
     role: "ADMIN",
     avatar: {
       create: [
         {
-          image: "https://res.cloudinary.com/mailranch/image/upload/David%20Mitchell?_a=BAMABkUq0",
+          image:
+            "https://res.cloudinary.com/mailranch/image/upload/David%20Mitchell?_a=BAMABkUq0",
         },
       ],
     },
@@ -36,13 +37,14 @@ const userData: Prisma.UserCreateInput[] = [
     },
   },
   {
-    name: "Jennifer Williams",
+    username: "Jennifer Williams",
     email: "jennifer.williams@example.com",
     role: "ADMIN",
     avatar: {
       create: [
         {
-          image: "https://res.cloudinary.com/mailranch/image/upload/Jennifer%20Williams?_a=BAMABkUq0",
+          image:
+            "https://res.cloudinary.com/mailranch/image/upload/Jennifer%20Williams?_a=BAMABkUq0",
         },
       ],
     },
@@ -55,13 +57,14 @@ const userData: Prisma.UserCreateInput[] = [
     },
   },
   {
-    name: "Michael Rodriguez",
+    username: "Michael Rodriguez",
     email: "michael.rodriguez@example.com",
     role: "ADMIN",
     avatar: {
       create: [
         {
-          image: "https://res.cloudinary.com/mailranch/image/upload/Michael%20Rodriguez?_a=BAMABkUq0",
+          image:
+            "https://res.cloudinary.com/mailranch/image/upload/Michael%20Rodriguez?_a=BAMABkUq0",
         },
       ],
     },
@@ -74,13 +77,14 @@ const userData: Prisma.UserCreateInput[] = [
     },
   },
   {
-    name: "Amanda Chen",
+    username: "Amanda Chen",
     email: "amanda.chen@example.com",
     role: "ADMIN",
     avatar: {
       create: [
         {
-          image: "https://res.cloudinary.com/mailranch/image/upload/Amanda%20Chen?_a=BAMABkUq0",
+          image:
+            "https://res.cloudinary.com/mailranch/image/upload/Amanda%20Chen?_a=BAMABkUq0",
         },
       ],
     },
@@ -93,13 +97,14 @@ const userData: Prisma.UserCreateInput[] = [
     },
   },
   {
-    name: "Robert Johnson",
+    username: "Robert Johnson",
     email: "robert.johnson@example.com",
     role: "ADMIN",
     avatar: {
       create: [
         {
-          image: "https://res.cloudinary.com/mailranch/image/upload/Robert%20Johnson?_a=BAMABkUq0",
+          image:
+            "https://res.cloudinary.com/mailranch/image/upload/Robert%20Johnson?_a=BAMABkUq0",
         },
       ],
     },
@@ -112,13 +117,14 @@ const userData: Prisma.UserCreateInput[] = [
     },
   },
   {
-    name: "Sophia Patel",
+    username: "Sophia Patel",
     email: "sophia.patel@example.com",
     role: "ADMIN",
     avatar: {
       create: [
         {
-          image: "https://res.cloudinary.com/mailranch/image/upload/Sophia%20Patel?_a=BAMABkUq0",
+          image:
+            "https://res.cloudinary.com/mailranch/image/upload/Sophia%20Patel?_a=BAMABkUq0",
         },
       ],
     },

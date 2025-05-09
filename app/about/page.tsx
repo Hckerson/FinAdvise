@@ -1,4 +1,4 @@
-import { getassetUrl } from "@/lib/cloudinary/connection";
+import { getassetUrl } from "@/app/api/services/cloudinary/connection";
 import AboutPage from "./aboutPage";
 import axios from "axios";
 export const metadata = {

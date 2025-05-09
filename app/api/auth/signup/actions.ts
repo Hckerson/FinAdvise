@@ -1,5 +1,5 @@
 "use server";
-import { signUpSchema } from "../../definitions/signUpSchema";
+import { signUpSchema } from "../../types/definitions/signUpSchema";
 import { State } from "@/app/signup/page";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/prisma/connection";
