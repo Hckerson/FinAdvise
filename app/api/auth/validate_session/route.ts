@@ -1,5 +1,5 @@
 "use server";
-import { prisma } from "@/prisma/connection";
+import prisma from "@/prisma/connections";
 
 export async function POST(request: Request) {
   const body = await request.json();

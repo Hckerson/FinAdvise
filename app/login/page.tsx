@@ -1,5 +1,4 @@
 import LoginPage from "@/app/login/loginPage";
-import { enable2FA } from "@/app/api/features/2fa/enable_2fa";
 export const metadata = {
   title: "Login | FinAdvise Financial Services",
   description:

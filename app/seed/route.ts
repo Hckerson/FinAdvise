@@ -1,4 +1,4 @@
-import { uploadImage } from "../../lib/cloudinary/connection";
+import { uploadImage } from "@/app/api/services/cloudinary/connection";
 import path from "path";
 const seedUrl = [
   {url: "/public/pexels-photo-5648101.jpeg", name:"David Mitchell"},

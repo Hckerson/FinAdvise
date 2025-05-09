@@ -4,6 +4,7 @@ import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
 import { useActionState } from "react";
+import { signUp } from "@/app/api/auth/signup/actions";
 import { FcGoogle } from "react-icons/fc";
 import React, { useEffect, useState } from "react";
 import { IoLogoLinkedin } from "react-icons/io5";
@@ -122,7 +123,7 @@ export default function AuthForm() {
                 <button
                   type="button"
                   className="flex  flex-col cursor-pointer "
-                  onClick={() => login()}
+                  // onClick={() => login()}
                 >
                   <p className="block text-sm/6 font-medium text-stone-200">
                     Continue with Google

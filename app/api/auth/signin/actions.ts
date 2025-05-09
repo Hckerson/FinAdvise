@@ -12,7 +12,7 @@ export async function signIn(data: {
 }) {
   //receive signin data and create session for users
   const { email, password, rememberMe } = data;
-  console.log(data);
+  console.log(rememberMe);
   try {
     const user = await prisma.user.findUnique({ where: { email: email } });
     if (user == null) {
@@ -42,15 +42,24 @@ export async function signIn(data: {
         const session = await encrypt({ sessionId, expiresAt, userId });
         const cookieStore = await cookies();
 
-        cookieStore.set("session", session, {
-          httpOnly: true,
-          secure: false,
-          expires: expiresAt,
-          sameSite: "lax",
-          path: "/",
-        });
-        redis_set("userId", userId.toString());
-        return { message: "success", status: 200, provider: "local" };
+        if (rememberMe) {
+          return new Response(null, {
+            status: 302,
+            headers: {
+              location: "/verify/2fa?email=" + email
+            },
+          });
+        } else {
+          cookieStore.set("session", session, {
+            httpOnly: true,
+            secure: false,
+            expires: expiresAt,
+            sameSite: "lax",
+            path: "/",
+          });
+          redis_set("userId", userId.toString());
+          return { message: "success", status: 200, provider: "local" };
+        }
       } else {
         return { message: "unAuthorized", status: 400, provider: "local" };
       }

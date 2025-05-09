@@ -2,7 +2,7 @@
 import { signUpSchema } from "../../types/definitions/signUpSchema";
 import { State } from "@/app/signup/page";
 import bcrypt from "bcryptjs";
-import { prisma } from "@/prisma/connection";
+import prisma from "@/prisma/connections";
 import { verifyMail } from "../verify/verify_email";
 
 const SALT = 10;

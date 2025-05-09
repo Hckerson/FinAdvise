@@ -1,7 +1,6 @@
 "use client";
 
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
-import Image from "next/image";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";

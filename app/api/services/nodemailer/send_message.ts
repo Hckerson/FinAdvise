@@ -1,5 +1,7 @@
-import nodemailer from "nodemailer";
 import "dotenv/config";
+import { totp } from "otplib";
+import nodemailer from "nodemailer";
+import { authenticator } from "otplib";
 
 export async function sendMessage(
   to: string,
@@ -8,6 +10,10 @@ export async function sendMessage(
   code: string
 ) {
   try {
+    const secret = authenticator.generateSecret();
+    totp.options = { digits: 6 };
+    const token = totp.generate(secret);
+
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -28,7 +34,7 @@ export async function sendMessage(
             <div style="background-color: #f5f5f5; padding: 20px; border-radius: 5px; margin: 20px 0;">
               <p style="color: #666; margin-bottom: 15px;">Your verification code is:</p>
               <div style="background-color: #fff; padding: 15px; border-radius: 4px; text-align: center; font-size: 24px; letter-spacing: 5px; font-weight: bold; color: #333;">
-                ${code}
+                ${token}
               </div>
             </div>
             <p style="color: #666; font-size: 14px;">This code will expire in 2 minutes.</p>

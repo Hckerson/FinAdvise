@@ -9,9 +9,9 @@ import { deleteUser } from "@/lib/actions/action";
 export default function VerifyPage() {
   const pathname = usePathname();
   const router = useRouter();
-  const split = pathname.split("/").slice(2);
-  const email = split[0];
-  const id = split[1];
+  const split = pathname?.split("/").slice(2);
+  const email = split?.[0];
+  const id = split?.[1];
   useEffect(() => {
     const verify = async () => {
       const response = await axios.get(`/api/auth/verify/${email}/${id}`);
@@ -33,7 +33,7 @@ export default function VerifyPage() {
 
         return () => clearInterval(timeoutId);
       } else {
-        deleteUser(id);
+        deleteUser(id as string);
         router.push("/signup");
       }
     };

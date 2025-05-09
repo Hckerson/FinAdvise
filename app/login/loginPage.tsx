@@ -58,7 +58,7 @@ export default function LoginPage() {
       const result = await signIn(values);
       
       toast.success("Successfully logged in!");
-      router.push("/dashboard");
+      // router.push("/dashboard");
     } catch (error) {
       toast.error("Invalid credentials. Please try again.");
     } finally {
