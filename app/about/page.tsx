@@ -1,5 +1,6 @@
 import AboutPage from "./aboutPage";
-import axios from "axios";
+import prisma from "@/prisma/connections";
+
 export const metadata = {
   title: "About Us | FinAdvise Financial Services",
   description:
@@ -7,7 +8,16 @@ export const metadata = {
 };
 
 export default async function About() {
-  const response = await axios.get('http://localhost:3000/api/team');
-  const teamMembers = response.data.data;
+  // Instead of using axios to call your own API, fetch data directly
+  const teamMembers = await prisma.teamMember.findMany({
+    include: {
+      user: {
+        include: {
+          avatar: true,
+        },
+      },
+    },
+  });
+
   return <AboutPage teamData={teamMembers} />;
 }

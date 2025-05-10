@@ -3,35 +3,31 @@ import { ArrowRight, Award, Clock, History, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import TeamMemberCard from "@/components/TeamMemberCard";
 import { CtaSection } from "@/components/CtaSection";
 
 type TeamMember = {
   id: string;
   position: string;
-  bio: string;
-  linkedIn: string;
+  bio: string | null;
+  linkedIn: string | null;
   userId: string;
   user: {
     id: string;
     email: string;
-    name: string;
+    username: string | null;
     role: string;
-    avatar: [
-      {
-        id: string;
-        userId: string;
-        image: string;
-        createdAt: string;
-        updatedAt: string;
-      }
-    ];
+    avatar: {
+      id: string;
+      userId: string;
+      image: string;
+      createdAt: Date;
+      updatedAt: Date;
+    }[];
   };
 };
 
-export default function AboutPage({teamData}: {teamData: TeamMember[]}) {
-
+export default function AboutPage({ teamData }: { teamData: TeamMember[] }) {
   // const [teamMember, setTeamMember] = useState<TeamMember[]>([]);
 
   // useEffect(() => {
@@ -319,16 +315,16 @@ export default function AboutPage({teamData}: {teamData: TeamMember[]}) {
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {/* {teamData.map((member) => (
+            {teamData.map((member) => (
               <TeamMemberCard
                 key={member.id}
-                name={member.user.name}
+                name={member.user.username}
                 position={member.position}
                 image={member.user.avatar[0]?.image || ""}
                 bio={member.bio}
               />
-            ))} */}
-            <TeamMemberCard
+            ))}
+            {/* <TeamMemberCard
               name="David Mitchell"
               position="Founder & CEO"
               image="https://images.pexels.com/photos/5648101/pexels-photo-5648101.jpeg"
@@ -363,7 +359,7 @@ export default function AboutPage({teamData}: {teamData: TeamMember[]}) {
               position="Client Relations Director"
               image="https://images.pexels.com/photos/6626903/pexels-photo-6626903.jpeg"
               bio="Dedicated to ensuring exceptional client experiences and tailored financial solutions."
-            />
+            /> */}
           </div>
         </div>
       </section>
