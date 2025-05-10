@@ -1,12 +1,3 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  // "crons": [
-  //   {
-  //     "path": "/api/schedule/unverified",
-  //     "schedule": "0 5 * * *"
-  //   },    {
-  //     "path": "/api/schedule/expired",
-  //     "schedule": "0 5 * * *"
-  //   }
-  // ]
+  "$schema": "https://openapi.vercel.sh/vercel.json"
 }
