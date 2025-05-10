@@ -1,19 +1,14 @@
 import "dotenv/config";
-import { totp } from "otplib";
 import nodemailer from "nodemailer";
-import { authenticator } from "otplib";
+import { generateSecret } from "../../features/2fa/enable_2fa";
 
 export async function sendMessage(
   to: string,
   subject: string,
   text: string,
-  code: string
 ) {
   try {
-    const secret = authenticator.generateSecret();
-    totp.options = { digits: 6 };
-    const token = totp.generate(secret);
-
+    const token = await generateSecret();
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {

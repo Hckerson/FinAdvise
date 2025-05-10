@@ -1,9 +1,10 @@
 "use server";
+import bcrypt from "bcryptjs";
+import { cookies } from "next/headers";
 import prisma from "@/prisma/connections";
+import { sendMessage } from "@/app/api/services/nodemailer/send_message";
 import { encrypt } from "@/lib/encryption";
 import { redis_set } from "@/app/api/services/redis/connection";
-import { cookies } from "next/headers";
-import bcrypt from "bcryptjs";
 
 export async function signIn(data: {
   email: string;
@@ -33,23 +34,27 @@ export async function signIn(data: {
         actualPassword as string
       );
       if (isPasswordValid) {
-        const expiresAt = new Date(Date.now() + 2 * 24 * 60 * 60 * 1000);
-        const [session_data] = await prisma.session.createManyAndReturn({
-          data: { userId: id, expires: expiresAt },
-        });
-        const { id: sessionId, userId } = session_data;
-
-        const session = await encrypt({ sessionId, expiresAt, userId });
-        const cookieStore = await cookies();
-
         if (rememberMe) {
+          await sendMessage(
+            email,
+            "2FA Verification Code",
+            `Your verification code is _______. This code will expire in 2 minutes.`,
+          );
           return new Response(null, {
             status: 302,
             headers: {
-              location: "/verify/2fa?email=" + email
+              location: "/verify/2fa",
             },
           });
         } else {
+          const expiresAt = new Date(Date.now() + 2 * 24 * 60 * 60 * 1000);
+          const [session_data] = await prisma.session.createManyAndReturn({
+            data: { userId: id, expires: expiresAt },
+          });
+          const { id: sessionId, userId } = session_data;
+
+          const session = await encrypt({ sessionId, expiresAt, userId });
+          const cookieStore = await cookies();
           cookieStore.set("session", session, {
             httpOnly: true,
             secure: false,

@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import LinkedinProvider  from "next-auth/providers/linkedin";
+import LinkedinProvider from "next-auth/providers/linkedin";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
@@ -8,7 +8,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
       authorization: {
-        params: { 
+        params: {
           prompt: "consent",
           access_type: "offline",
           response_type: "code",
@@ -86,11 +86,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
 
       if (token.provider === "linkedin") {
-        session.user.id       = token.twitterId    as string
-        session.user.username = token.username     as string
-        session.user.name     = token.name         as string
-        session.user.image    = token.image        as string
-        session.user.email    = token.email        as string
+        session.user.id = token.twitterId as string;
+        session.user.username = token.username as string;
+        session.user.name = token.name as string;
+        session.user.image = token.image as string;
+        session.user.email = token.email as string;
       }
 
       return session;

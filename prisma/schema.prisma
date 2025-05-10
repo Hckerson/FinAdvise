@@ -40,7 +40,7 @@ model User {
   avatar      Avatar[]
   role        Role        @default(USER)
   team        TeamMember?
-  Session     Session[]
+  sessions    Session[]
 }
 
 model Avatar {
@@ -63,7 +63,7 @@ model TeamMember {
 
 model Session {
   id         String   @id @default(uuid())
-  userId     String   @unique
+  userId     String   
   expires    DateTime
   otpEnabled Boolean  @default(false)
   createdAt  DateTime @default(now())
