@@ -10,7 +10,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "FinAdvise | Expert Financial Services for Your Future",
-  description: "Professional financial services including tax planning, retirement strategies, investment advisory, and business accounting.",
+  description:
+    "Professional financial services including tax planning, retirement strategies, investment advisory, and business accounting.",
 };
 
 export default function RootLayout({

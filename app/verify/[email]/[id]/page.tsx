@@ -40,11 +40,11 @@ export default function VerifyPage() {
     verify();
   }, [email, id, router]);
   return (
-    <div className="h-screen w-full flex items-center justify-center">
+    <div className="h-screen w-full flex items-center bg-white justify-center">
       <ToastContainer />
-      <p className="mr-[10px] text-xl font-bold">Verifying...</p>
+      <p className="mr-[10px] text-xl text-black font-bold">Verifying...</p>
       <span>
-        <ScaleLoader />
+        <ScaleLoader color="#000" />
       </span>
     </div>
   );

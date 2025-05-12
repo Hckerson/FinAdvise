@@ -46,3 +46,36 @@ export async function sendMessage(
     console.error("Error sending message:", error);
   }
 }
+
+export async function sendMessages(
+  to: string,
+  subject: string,
+  text: string,
+  html: string
+) {
+  try {
+    const token = await generateSecret();
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
+
+    (async () => {
+      const info = await transporter.sendMail({
+        from: process.env.SMTP_USER,
+        to: to,
+        subject: subject,
+        text: text, // plain‑text body
+        html: html // HTML body
+      });
+
+      console.log("Message sent:", info.messageId);
+    })();
+  } catch (error) {
+    console.error("Error sending message:", error);
+  }
+}
+

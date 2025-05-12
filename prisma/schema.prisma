@@ -31,7 +31,7 @@ model User {
   email       String      @unique
   password    String?
   provider    String?
-  username    String?     @unique
+  username    String?     
   status      String      @default("unverified")
   localStatus Boolean     @default(true)
   phone       String?

@@ -1,31 +1,20 @@
 "use server";
-import { signUpSchema } from "../../types/definitions/signUpSchema";
-import { State } from "@/app/signup/page";
 import bcrypt from "bcryptjs";
 import prisma from "@/prisma/connections";
 import { verifyMail } from "../verify/verify_email";
 
 const SALT = 10;
 
-export async function signUp(previousState: State = {}, formData: FormData) {
-  console.log(previousState);
-  const prefix = formData.get("prefix");
-  const validatedFields = signUpSchema.safeParse({
-    email: formData.get("email"),
-    username: formData.get("username"),
-    phone: formData.get("phone"),
-    password: formData.get("password"),
-  });
-  if (!validatedFields.success) {
-    return {
-      errors: validatedFields.error.flatten().fieldErrors,
-      message: "",
-    };
-  }
-  const { email, password, username, phone } = validatedFields.data;
-  const hashedPassword = await bcrypt.hash(password, SALT);
-  const phoneNumber = `${prefix}${
-    phone.startsWith("0") ? phone.slice(1) : phone
+export async function signUp(formData: {
+  email: string;
+  password: string;
+  username: string;
+  phone: string;
+  dialCode: string;
+}) {
+  const hashedPassword = await bcrypt.hash(formData.password, SALT);
+  const phoneNumber = `${formData.dialCode}${
+    formData.phone.startsWith("0") ? formData.phone.slice(1) : formData.phone
   }`;
   const status = "unverified";
   const isLocal = true;
@@ -33,17 +22,22 @@ export async function signUp(previousState: State = {}, formData: FormData) {
   try {
     const [client] = await prisma.user.createManyAndReturn({
       data: {
-        email,
+        email: formData.email,
         password: hashedPassword,
-        username,
+        username: formData.username,
         phone: phoneNumber,
-        status,
+        status: status,
         localStatus: isLocal,
       },
     });
     const { email: returnedEmail, id } = client;
-    verifyMail(returnedEmail, id);
-    return { message: "done", status: 200 };
+    console.log(returnedEmail, id);
+    const result = await verifyMail(returnedEmail, id);
+    if (result?.status === 200) {
+      return { message: "done", status: 200 };
+    } else {
+      return { message: "failed", status: 500 };
+    }
   } catch (error) {
     console.error("Error registering user", error);
     return { message: "failed", status: 500 };
