@@ -8,8 +8,8 @@ const getRedisClient = async () => {
       username: "default",
       password: process.env.REDIS_PASSWORD,
       socket: {
-        host: "redis-15538.c240.us-east-1-3.ec2.redns.redis-cloud.com",
-        port: 15538,
+        host: "redis-10248.c11.us-east-1-3.ec2.redns.redis-cloud.com",
+        port: 10248,
       },
     });
 

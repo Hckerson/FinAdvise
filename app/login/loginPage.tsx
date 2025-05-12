@@ -1,13 +1,19 @@
 "use client";
-import { Eye, EyeOff, Github } from "lucide-react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { signIn } from "../api/auth/signin/actions";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import Link from "next/link";
+import { useState } from "react";
+import { FaGoogle } from "react-icons/fa";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { PulseLoader } from "react-spinners";
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Eye, EyeOff, Github } from "lucide-react";
+import { signIn } from "../api/auth/signin/actions";
+import { Separator } from "@/components/ui/separator";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ToastContainer, toast } from "react-toastify";
+import { login } from "@/lib/actions/google/auth_actions";
 import {
   Card,
   CardContent,
@@ -25,10 +31,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
-import { toast } from "sonner";
-import { CircleLoader } from "react-spinners";
 
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -54,13 +56,42 @@ export default function LoginPage() {
     try {
       setIsLoading(true);
       // Simulate backend call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
       const result = await signIn(values);
-      
-      toast.success("Successfully logged in!");
-      // router.push("/dashboard");
+      if (!result){
+        return;
+      }
+
+      if ("message" in result && result.message == "not_local") {
+        toast.error("This is not a local account. Please login with " + result.provider, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        return;
+      }
+
+      if ("message" in result && result.message === "success") {
+        toast.success("Successfully logged in!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        router.push("/contact");
+      } else {
+        toast.error("Invalid credentials. Please try again.");
+      }
     } catch (error) {
-      toast.error("Invalid credentials. Please try again.");
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -68,6 +99,7 @@ export default function LoginPage() {
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-background py-12 px-4 sm:px-6 lg:px-8">
+      <ToastContainer />
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold tracking-tight">
@@ -164,7 +196,11 @@ export default function LoginPage() {
               </div>
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? (
-                  <CircleLoader size={24} color="white" />
+                  <PulseLoader
+                    color="#000000"
+                    size={10}
+                    className="text-white"
+                  />
                 ) : (
                   "Sign in"
                 )}
@@ -189,6 +225,12 @@ export default function LoginPage() {
               Github
             </Button>
           </div>
+          <div className="grid gap-2 mt-3">
+            <Button variant="outline" type="button" disabled={isLoading} onClick={() => login()}>
+              <FaGoogle className="mr-2 h-4 w-4" />
+              Google
+            </Button>
+          </div>    
         </CardContent>
         <CardFooter>
           <p className="text-sm text-muted-foreground text-center w-full">

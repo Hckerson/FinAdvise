@@ -13,7 +13,6 @@ export async function signIn(data: {
 }) {
   //receive signin data and create session for users
   const { email, password, rememberMe } = data;
-  console.log(rememberMe);
   try {
     const user = await prisma.user.findUnique({ where: { email: email } });
     if (user == null) {
