@@ -94,10 +94,7 @@ export default function SignupPage() {
     }
   }, [isEmailAvailable]);
 
-  useEffect(() => {
-    setDisabled(false);
-    debounced();
-  }, [formData.email]);
+
 
 
   const debounced = useDebouncedCallback(
@@ -116,6 +113,11 @@ export default function SignupPage() {
     // delay in ms
     1000
   );
+
+  useEffect(() => {
+    setDisabled(false);
+    debounced();
+  }, [formData.email, debounced]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

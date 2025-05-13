@@ -1,7 +1,7 @@
 "use client";
 import * as z from "zod";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
@@ -14,6 +14,7 @@ import { Separator } from "@/components/ui/separator";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ToastContainer, toast } from "react-toastify";
 import { login } from "@/lib/actions/google/auth_actions";
+import { login as loginGithub } from "@/lib/actions/github/auth_actions";
 import {
   Card,
   CardContent,
@@ -38,10 +39,27 @@ const formSchema = z.object({
   rememberMe: z.boolean().default(false),
 });
 
-export default function LoginPage() {
+
+
+export default function LoginPage({error}: {error: string}) {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  }, [error]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -220,7 +238,7 @@ export default function LoginPage() {
           </div>
 
           <div className="grid gap-2">
-            <Button variant="outline" type="button" disabled={isLoading}>
+            <Button variant="outline" type="button" disabled={isLoading} onClick={() => loginGithub()}>
               <Github className="mr-2 h-4 w-4" />
               Github
             </Button>

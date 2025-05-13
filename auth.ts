@@ -45,6 +45,23 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         };
       },
     }),
+    GithubProvider({
+      clientId: process.env.GITHUB_CLIENT_ID!,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+      profile(profile) {
+        const mappedProfile = {
+          id: profile.id.toString(),
+          name: profile.name || profile.login,
+          username: profile.login,
+          email: profile.email,
+          image: profile.avatar_url,
+          firstName: profile.name?.split(" ")[0] || "",
+          lastName: profile.name?.split(" ").slice(1).join(" ") || "",
+          locale: "",
+        };
+        return mappedProfile;
+      },
+    }),
   ],
 
   callbacks: {
@@ -59,7 +76,16 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           token.verified = profile.email_verified;
         }
 
-        // Twitter provider — simpler profile object
+        // GitHub provider
+        if (account.provider === "github") {
+          token.id = profile.id;
+          token.username = profile.login;
+          token.name = profile.name;
+          token.image = profile.avatar_url;
+          token.email = profile.email;
+          token.firstName = profile.name?.split(" ")[0] || "";
+          token.lastName = profile.name?.split(" ").slice(1).join(" ") || "";
+        }
 
         if (account.provider === "linkedin") {
           // grab it from the **raw** profile, not the DB user
@@ -84,6 +110,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         session.user.lastName = token.lastName as string;
         session.user.locale = token.locale as string;
         session.user.verified = token.verified as boolean;
+      }
+
+      // If GitHub
+      if (token.provider === "github") {
+        session.user.id = token.id as string;
+        session.user.username = token.username as string;
+        session.user.name = token.name as string;
+        session.user.image = token.image as string;
+        session.user.email = token.email as string;
+        session.user.firstName = token.firstName as string;
+        session.user.lastName = token.lastName as string;
       }
 
       if (token.provider === "linkedin") {
